@@ -17,7 +17,18 @@ exports.createHero = function(req, res, next){
 }
 
 exports.getHeros = function(req, res, next) {
-    Heros.getMaxListeners({}, function(err, heros){
+    Heros.get({}, function(err, heros){
+        if(err){
+            res.json({ error: err})
+        }
+        res.json({
+            heros: heros
+        })
+    })
+}
+
+exports.getHero = function(req, res, next) {
+    Heros.get({name: req.params.name}, function(err, heros){
         if(err){
             res.json({ error: err})
         }
