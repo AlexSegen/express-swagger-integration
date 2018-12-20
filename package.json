@@ -1,0 +1,17 @@
+{
+  "name": "express-practice",
+  "version": "1.0.0",
+  "description": "Practica de Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "practice",
+    "boilerplate"
+  ],
+  "author": "pixelagil",
+  "license": "ISC"
+}
