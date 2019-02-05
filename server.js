@@ -2,6 +2,9 @@ var express = require('express');
 var log = require('morgan')('dev');
 var bodyParser = require('body-parser');
 
+swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
+
 var properties = require('./config/properties');
 var db = require('./config/database');
 //hero routes
@@ -34,8 +37,11 @@ app.use(function(req, res, next) {
 
 // use express router
 app.use('/api',router);
+
 //call heros routing
 herosRoutes(router);
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // intialise server
 app.listen(properties.PORT, (req, res) => {

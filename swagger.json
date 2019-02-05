@@ -1,0 +1,187 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger Docs Application API",
+    "description": "Swagger integration on Express Project",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Heros",
+      "description": "API for heros in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/create": {
+      "post": {
+        "tags": [
+          "Heros"
+        ],
+        "description": "Create new hero in system",
+        "parameters": [
+          {
+            "name": "hero",
+            "in": "body",
+            "description": "Hero that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New hero is created",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        }
+      }
+    },
+    "/get":{
+      "get": {
+        "tags": [
+          "Heros"
+        ],
+        "summary": "Get all heros in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Heros"
+            }
+          }
+        }
+      }
+    },
+    "/get/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of hero that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Heros"
+        ],
+        "summary": "Get hero with given name",
+        "responses": {
+          "200": {
+            "description": "Hero is found",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of hero that we want to update",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update hero with give ID",
+        "tags": [
+          "Heros"
+        ],
+        "parameters": [
+          {
+            "name": "hero",
+            "in": "body",
+            "description": "Hero with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hero is updated",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        }
+      }
+    },
+    "/remove/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of hero that we want to delete",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete hero with given ID",
+        "tags": [
+          "Heros"
+        ],
+        "responses": {
+          "200": {
+            "description": "Hero is deleted",
+            "schema": {
+              "$ref": "#/definitions/Hero"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Hero": {
+      "required": [
+        "name",
+        "description",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Heros": {
+      "type": "array",
+      "$ref": "#/definitions/Hero"
+    }
+  }
+}
